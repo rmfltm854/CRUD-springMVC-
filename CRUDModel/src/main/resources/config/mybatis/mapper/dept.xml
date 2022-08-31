@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test"><!-- SQL문들을 table마다 구분할수 있는 이름 공간..(영역) -->
+	<!-- SQL문들을 작성하는 파일.... -->
+
+	<select id="list" resultType="vo.MemberVO">
+		select * from Test
+	</select>
+	
+	<select id="selectOne" resultType="vo.MemberVO" parameterType="int">
+		select * from Test where num=#{num}
+	</select>
+	
+	<insert id="insert" parameterType="vo.MemberVO">
+		insert  Test values(num,#{name},#{age},#{tel1},#{tel2},#{tel3})
+	</insert>
+	
+	<select id="maxAge" resultType="int">
+		select max(num) from test
+	</select>
+	
+	<!-- delete , update... -->
+
+	<update id="update" parameterType="vo.MemberVO">
+		update Test set name=#{name},age=#{age},tel1 = #{tel1},tel2 = #{tel2},tel3= #{tel3} where num=#{num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from Test where num=#{num}
+	</delete>
+	
+	<update id="reset2" parameterType = "vo.MemberVO">
+		UPDATE test SET  num = @COUNT:=@COUNT+1;
+	</update>
+	
+	<update id = "reset1" parameterType="vo.MemberVO">
+	SET @COUNT = 0;
+	</update>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
